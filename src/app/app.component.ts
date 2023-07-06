@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { startWith, map } from 'rxjs/operators';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { NgFor, AsyncPipe,NgIf } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
-import { NgxSpinnerService,NgxSpinnerModule } from "ngx-spinner";  
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 interface IOptionSearchAPI {
   success: boolean;
@@ -32,6 +32,15 @@ interface IPostItem {
   comment_count: number;
 }
 
+interface IUserDetails {
+  followers: number;
+  fullname: string;
+  is_verified: boolean;
+  picture: string;
+  user_id: string;
+  username: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,13 +56,22 @@ interface IPostItem {
     AsyncPipe,
     MatGridListModule,
     MatCardModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgIf
   ],
 })
 export class AppComponent {
   myControl = new FormControl('');
   options: IOptionData[] = [];
   posts: IPostItem[] = [];
+  userDetails: IUserDetails = {
+    followers: 0,
+    fullname: '',
+    is_verified: false,
+    picture: '',
+    user_id: '',
+    username: '',
+  };
 
   constructor(
     private http: HttpClient,
@@ -75,15 +93,17 @@ export class AppComponent {
   }
 
   onOptionSelected(event: any) {
-    this.SpinnerService.show();  
+    this.SpinnerService.show();
+    this.userDetails = event.option.value;
     const selectedOption = event.option.value;
+    this.posts=[]
     this.http
       .get<any[]>(
         `http://localhost:3000/user/post?search=${selectedOption.username}`
       )
       .subscribe((response: any) => {
         this.posts = response;
-        this.SpinnerService.hide();  
+        this.SpinnerService.hide();
         // this.options = response.data;
       });
     // Perform additional actions based on the selected option

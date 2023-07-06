@@ -33,6 +33,42 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
+  <div class="main-container" *ngIf="userDetails.fullname">
+    <div class="profile-image-details-container">
+      <div class="profile-image-container">
+        <img
+          src="{{userDetails.picture}}"
+          alt="image"
+          class="user-image"
+        />
+      </div>
+      <div class="profile-details-container">
+        <p class="profile-username">
+          {{ userDetails.username }}
+          <img
+            *ngIf="userDetails.is_verified"
+            class="blue-tick-image"
+            src="assets/blue-tick.png"
+          />
+        </p>
+        <div class="profile-follow-following-post">
+          <p class="profile-post"><span>0</span> post</p>
+          <p class="profile-followers">
+            <span>{{ transformValue(userDetails.followers) }}</span> follows
+          </p>
+          <p class="profile-following"><span>0</span> following</p>
+        </div>
+        <p class="profile-user-name">{{ userDetails.fullname }}</p>
+        <!-- <p class="profile-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+          sunt, suscipit cum dicta aperiam adipisci minus hic aliquid, tempora
+          aut esse ipsum corporis consectetur! Aut veniam pariatur sit illum
+          corrupti?
+        </p>
+        <a class="profile-link" href="www.google.com">Google</a> -->
+      </div>
+    </div>
+  </div>
 
   <!-- <mat-grid-list cols="3" rowHeight="2:1">
   <mat-grid-tile *ngFor="let post of posts">{{post.display_url}}</mat-grid-tile>

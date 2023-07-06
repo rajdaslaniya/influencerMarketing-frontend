@@ -219,7 +219,7 @@
 .loader:after {
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
 }
 .loader:before {
   left: -1.5em;
@@ -252,4 +252,78 @@
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+.profile-image-details-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  gap: 20px;
+}
+
+.profile-image-container {
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image-container .user-image {
+  height: 175px;
+  width: 175px;
+  border-radius: 50%;
+}
+
+.profile-follow-following-post {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+.profile-follow-following-post span {
+  font-weight: bold;
+  font-size: 16px;
+}
+.profile-post,
+.profile-followers,
+.profile-following {
+  margin-bottom: 0;
+  color: #414141;
+  font-size: 15px;
+}
+
+.profile-username {
+  color: #2f2f2f;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 17px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.profile-user-name {
+  color: #161616;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.profile-description {
+  color: #393939;
+  font-weight: 400;
+  margin-bottom: 8px;
+  margin-bottom: 2px;
+}
+
+.profile-link {
+  color: #0a3162;
+  font-size: 12px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.blue-tick-image {
+  height: 15px;
+  width: 15px;
 }
